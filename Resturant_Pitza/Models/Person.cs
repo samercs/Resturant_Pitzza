@@ -6,8 +6,17 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Resturant_Pitza.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
+    
     public class ApplicationUser : IdentityUser
     {
+        public string FName { get; set; }
+        public string LName { get; set; }
+
+        public int PaymentInfoId { get; set; }
+
+        public virtual PaymentInfo PaymentInfo { get; set; }
+
+
+
     }
 }

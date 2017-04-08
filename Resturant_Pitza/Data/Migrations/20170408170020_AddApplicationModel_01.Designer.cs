@@ -8,9 +8,10 @@ using Resturant_Pitza.Data;
 namespace Resturant_Pitza.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170408170020_AddApplicationModel_01")]
+    partial class AddApplicationModel_01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -147,81 +148,6 @@ namespace Resturant_Pitza.Data.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("Resturant_Pitza.Models.Beverage", b =>
-                {
-                    b.Property<int>("BeverageId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("Cold");
-
-                    b.Property<bool>("Diet");
-
-                    b.Property<int>("FoodId");
-
-                    b.Property<int>("FoodType");
-
-                    b.Property<decimal>("Prices");
-
-                    b.Property<string>("Size");
-
-                    b.Property<string>("Type");
-
-                    b.HasKey("BeverageId");
-
-                    b.ToTable("Beverages");
-                });
-
-            modelBuilder.Entity("Resturant_Pitza.Models.Dessert", b =>
-                {
-                    b.Property<int>("DessertId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("FoodId");
-
-                    b.Property<int>("FoodType");
-
-                    b.Property<decimal>("Prices");
-
-                    b.Property<string>("Size");
-
-                    b.Property<string>("Type");
-
-                    b.HasKey("DessertId");
-
-                    b.ToTable("Desserts");
-                });
-
-            modelBuilder.Entity("Resturant_Pitza.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AddressId");
-
-                    b.Property<int>("BeverageId");
-
-                    b.Property<int>("DessertId");
-
-                    b.Property<string>("PersonId")
-                        .HasMaxLength(450);
-
-                    b.Property<int>("PitzzaId");
-
-                    b.HasKey("OrderId");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("BeverageId");
-
-                    b.HasIndex("DessertId");
-
-                    b.HasIndex("PersonId");
-
-                    b.HasIndex("PitzzaId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("Resturant_Pitza.Models.PaymentInfo", b =>
                 {
                     b.Property<int>("PaymentInfoId")
@@ -304,34 +230,6 @@ namespace Resturant_Pitza.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Resturant_Pitza.Models.Pizza", b =>
-                {
-                    b.Property<int>("PizzaId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ExtraCheese");
-
-                    b.Property<int>("FoodId");
-
-                    b.Property<int>("FoodType");
-
-                    b.Property<decimal>("Prices");
-
-                    b.Property<string>("Size");
-
-                    b.Property<string>("Thickness");
-
-                    b.Property<string>("Topping1");
-
-                    b.Property<string>("Topping2");
-
-                    b.Property<string>("Topping3");
-
-                    b.HasKey("PizzaId");
-
-                    b.ToTable("Pizzas");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -366,33 +264,6 @@ namespace Resturant_Pitza.Data.Migrations
                     b.HasOne("Resturant_Pitza.Models.Person")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Resturant_Pitza.Models.Order", b =>
-                {
-                    b.HasOne("Resturant_Pitza.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Resturant_Pitza.Models.Beverage", "Beverage")
-                        .WithMany()
-                        .HasForeignKey("BeverageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Resturant_Pitza.Models.Dessert", "Dessert")
-                        .WithMany()
-                        .HasForeignKey("DessertId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Resturant_Pitza.Models.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId");
-
-                    b.HasOne("Resturant_Pitza.Models.Pizza", "Pizza")
-                        .WithMany()
-                        .HasForeignKey("PitzzaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
